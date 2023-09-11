@@ -1,0 +1,27 @@
+<h1>New Payment</h1>
+<%= form_with(model: @payment, url: payments_path) do |f| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved : </h2>
+      <ul>
+        <% @payment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul> 
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+
+  <div>
+    <%= f.label :currency %>
+    <%= f.select :currency, options_for_select([["USD", "USD"], ["EUR", "EUR"], ["GBP", "GBP"]]) %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Payment" %>
+  </div>
+<% end %>

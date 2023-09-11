@@ -1,0 +1,22 @@
+<h1>Notifications</h1>
+<p style="color: green"><%= notice %></p>
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td><%= notification.message %></td>
+        <td><%= notification.status.capitalize %></td>
+        <td><%= button_to "Mark as Read", mark_as_read_notification_path(notification), method: :put %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", main_app.root_path %>
